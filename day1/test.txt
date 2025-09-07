@@ -1,0 +1,53 @@
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+)
+
+type Elf struct {
+	Total int
+}
+
+type Te struct {
+	Id int
+}
+
+func check(e error) {
+	if e != nil {
+		panic(e)
+	}
+}
+
+func main() {
+
+	data, err := os.Open("1.txt")
+	check(err)
+	defer data.Close()
+	scanner := bufio.NewScanner(data)
+
+	elfs := make([]Elf, 1)
+	c := 0
+	currentElf := elfs[c]
+
+	for scanner.Scan() {
+		stringValue := scanner.Text()
+
+		if stringValue == "" {
+			fmt.Printf("New Elf! Old Elf Total: %v\n", currentElf.Total)
+			fmt.Printf("cElf address %v \t Elfs[%d] address %v", &currentElf, c, &elfs[c])
+			elfs = append(elfs, Elf{})
+			c++
+			currentElf = elfs[c]
+		} else {
+			tes, _ := strconv.Atoi(stringValue)
+			currentElf.Total += tes
+		}
+	}
+
+	for _, val := range elfs {
+		fmt.Printf("Loc: %v \t %d", val, val.Total)
+	}
+}
