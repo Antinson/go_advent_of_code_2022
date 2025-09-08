@@ -11,9 +11,9 @@ func calcScoreTwo(opponentChoice string, playerChoice string) int {
 	total := 0
 
 	mapNum := map[string][3]int{
-		"A": {1, 4, 7}, // Rock
-		"B": {2, 5, 8}, // Paper
-		"C": {3, 6, 9}, // Scissors
+		"A": {3, 4, 8}, // Rock
+		"B": {1, 5, 9}, // Paper
+		"C": {2, 6, 7}, // Scissors
 	}
 
 	switch playerChoice {
@@ -31,7 +31,7 @@ func calcScoreTwo(opponentChoice string, playerChoice string) int {
 
 func p2() {
 
-	data, _ := os.Open("input_test.txt")
+	data, _ := os.Open("input.txt")
 
 	defer data.Close()
 
