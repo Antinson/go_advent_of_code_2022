@@ -26,8 +26,11 @@ func overlay(data string) int {
 
 	newData := strings.Split(data, ",")
 
-	range1 := newRange(string(newData[0][0]), string(newData[0][2]))
-	range2 := newRange(string(newData[1][0]), string(newData[1][2]))
+	test1 := strings.Split(newData[0], "-")
+	test2 := strings.Split(newData[1], "-")
+
+	range1 := newRange(string(test1[0]), string(test1[1]))
+	range2 := newRange(string(test2[0]), string(test2[1]))
 
 	if (range1.start <= range2.start && range1.end >= range2.end) ||
 		(range2.start <= range1.start && range2.end >= range1.end) {
