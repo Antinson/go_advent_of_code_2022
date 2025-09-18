@@ -47,7 +47,11 @@ func p1() {
 
 	stacks := strings.Split(arrangement[len(arrangement)-1], "   ")
 
-	fmt.Println(createStacks(len(stacks)))
+	newStacks := createStacks(len(stacks))
+
+	for thing := range arrangement {
+		newStacks[0][0] = arrangement[thing][0:3]
+	}
 
 	fmt.Println(instructions)
 }
