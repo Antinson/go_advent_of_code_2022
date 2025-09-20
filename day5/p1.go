@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 const file = "test.txt"
@@ -38,37 +39,35 @@ func p1() {
 		}
 
 		if flag == 0 {
-			arrangement = append(arrangement, value+"\n")
+			arrangement = append(arrangement, value)
 		} else {
 			instructions = append(instructions, value)
 		}
 	}
 
-	// stacks := strings.Split(arrangement[len(arrangement)-1], "   ")
+	stacks := strings.Split(arrangement[len(arrangement)-1], "   ")
 
-	// newStacks := createStacks(len(stacks))
+	newStacks := createStacks(len(stacks))
 
-	//fmt.Println(arrangement)
+	fmt.Println(arrangement)
 
 	for thing := 0; thing < len(arrangement)-1; thing++ {
 
-		rnge := len(arrangement[thing]) - 1
+		v := strings.TrimSpace(arrangement[thing])
+		splitRange(v, newStacks)
 
-		for {
+	}
+	fmt.Println(newStacks)
+	fmt.Println(instructions)
+}
 
-			if rnge <= 4 {
-				val := arrangement[thing][0:rnge]
-				fmt.Printf("Range: %v - %v \t value: %v\n", rnge-3, rnge, val)
-				break
-			}
+func splitRange(s string, stack *[][]string) {
+	t := strings.Split(s, " ")
+	c := len(t)
 
-			fmt.Println(arrangement[thing][rnge-3 : rnge])
-			rnge -= 3
-		}
-		// fmt.Printf("%v", thing)
-		// fmt.Printf("%v", arrangement[thing][0:3])
-		// fmt.Printf("%v\n", arrangement[thing][4:7])
+	for index, value := range t {
+		(*stack)[index] = append((*stack)[index], value)
 	}
 
-	fmt.Println(instructions)
+	fmt.Println(c, t)
 }
